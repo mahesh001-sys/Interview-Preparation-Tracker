@@ -2,6 +2,26 @@
 
 A full-stack web application to organize job applications, manage interview rounds, and track technical preparation questions in one place.
 
+## Application Screenshots
+
+Explore the application's modern dashboard and core features.
+
+### Dashboard
+![Dashboard](docs/screenshots/home.png)
+
+### Company Applications
+![Company Applications](docs/screenshots/application.png)
+
+### Interview Management
+![Interview Management](docs/screenshots/interview.png)
+
+### Knowledge Base
+![Knowledge Base](docs/screenshots/knowledge.png)
+
+---
+
+
+
 ## Features
 
 ### 1. Company Management
