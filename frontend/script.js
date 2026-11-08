@@ -63,11 +63,17 @@ const questionCountLabel = document.getElementById("questionCountLabel");
 function showMessage(element, message, type = "success") {
     element.textContent = message;
     element.className = `message ${type}`;
+    element.setAttribute("role", type === "error" ? "alert" : "status");
+    element.setAttribute("aria-live", type === "error" ? "assertive" : "polite");
+    element.setAttribute("aria-atomic", "true");
 }
 
 function clearMessage(element) {
     element.textContent = "";
     element.className = "message";
+    element.setAttribute("role", "status");
+    element.setAttribute("aria-live", "polite");
+    element.setAttribute("aria-atomic", "true");
 }
 
 async function apiRequest(url, options = {}) {
@@ -265,8 +271,58 @@ function getFormData() {
     };
 }
 
+
+/* =========================
+   ACCESSIBLE FORM VALIDATION
+========================= */
+
+function validateRequiredFields(form) {
+    const requiredFields = form.querySelectorAll("[required]");
+    let firstInvalidField = null;
+
+    requiredFields.forEach(field => {
+        const isTextField =
+            field.tagName === "TEXTAREA" ||
+            (
+                field.tagName === "INPUT" &&
+                field.type !== "checkbox" &&
+                field.type !== "radio"
+            );
+
+        if (isTextField) {
+            field.setCustomValidity(
+                field.value.trim()
+                    ? ""
+                    : "Please enter a value. Spaces alone are not accepted."
+            );
+        }
+
+        if (!field.checkValidity() && !firstInvalidField) {
+            firstInvalidField = field;
+        }
+    });
+
+    if (firstInvalidField) {
+        firstInvalidField.reportValidity();
+        firstInvalidField.focus();
+        return false;
+    }
+
+    return true;
+}
+
+document.querySelectorAll("form [required]").forEach(field => {
+    const clearValidation = () => {
+        if (field.value.trim()) field.setCustomValidity("");
+    };
+
+    field.addEventListener("input", clearValidation);
+    field.addEventListener("change", clearValidation);
+});
+
 companyForm.addEventListener("submit", async event => {
     event.preventDefault();
+    if (!validateRequiredFields(companyForm)) return;
     clearMessage(formMessage);
 
     const payload = getFormData();
@@ -292,7 +348,7 @@ companyForm.addEventListener("submit", async event => {
 
         resetForm();
         await loadCompanies();
-loadQuestions();
+
     } catch (error) {
         showMessage(formMessage, error.message, "error");
     } finally {
@@ -555,6 +611,7 @@ function getRoundFormData() {
 
 roundForm.addEventListener("submit", async event => {
     event.preventDefault();
+    if (!validateRequiredFields(roundForm)) return;
     clearMessage(roundFormMessage);
 
     if (!companies.length) {
@@ -824,6 +881,7 @@ function getQuestionFormData() {
 
 questionForm.addEventListener("submit", async event => {
     event.preventDefault();
+    if (!validateRequiredFields(questionForm)) return;
     clearMessage(questionFormMessage);
 
     const payload = getQuestionFormData();
@@ -947,8 +1005,90 @@ questionSearch.addEventListener("input", renderQuestions);
 questionCategoryFilter.addEventListener("change", renderQuestions);
 questionCompletionFilter.addEventListener("change", renderQuestions);
 
+
+
+/* =========================
+   DYNAMIC WORKSPACE NAVIGATION
+========================= */
+
+const navigationLinks = [...document.querySelectorAll(".nav-link")];
+const pageTitle = document.getElementById("topbarPageTitle");
+
+const navigationSections = [
+    { id: "overview", title: "Overview" },
+    { id: "applications", title: "Applications" },
+    { id: "interviews", title: "Interviews" },
+    { id: "knowledge-base", title: "Knowledge Base" }
+].map(item => ({
+    ...item,
+    element: document.getElementById(item.id)
+})).filter(item => item.element);
+
+function setActiveNavigation(sectionId) {
+    const current = navigationSections.find(section => section.id === sectionId);
+    if (!current) return;
+
+    navigationLinks.forEach(link => {
+        const isActive = link.getAttribute("href") === `#${sectionId}`;
+
+        link.classList.toggle("active", isActive);
+
+        if (isActive) {
+            link.setAttribute("aria-current", "page");
+        } else {
+            link.removeAttribute("aria-current");
+        }
+    });
+
+    if (pageTitle) {
+        pageTitle.textContent = current.title;
+    }
+}
+
+function updateNavigationFromHash() {
+    const sectionId = window.location.hash.slice(1) || "overview";
+    setActiveNavigation(sectionId);
+}
+
+navigationLinks.forEach(link => {
+    link.addEventListener("click", () => {
+        const sectionId = link.getAttribute("href").slice(1);
+        setActiveNavigation(sectionId);
+    });
+});
+
+window.addEventListener("hashchange", updateNavigationFromHash);
+
+let navigationScrollPending = false;
+
+window.addEventListener("scroll", () => {
+    if (navigationScrollPending) return;
+
+    navigationScrollPending = true;
+
+    window.requestAnimationFrame(() => {
+        const visibleSections = navigationSections.filter(
+            section => section.element.getBoundingClientRect().top <= 180
+        );
+
+        const currentSection = visibleSections.length
+            ? visibleSections[visibleSections.length - 1]
+            : navigationSections[0];
+
+        if (currentSection) {
+            setActiveNavigation(currentSection.id);
+        }
+
+        navigationScrollPending = false;
+    });
+}, { passive: true });
+
+updateNavigationFromHash();
+
+
 /* =========================
    INITIAL LOAD
 ========================= */
 
 loadCompanies();
+loadQuestions();

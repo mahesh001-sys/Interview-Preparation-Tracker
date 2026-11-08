@@ -3,102 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Manage job applications and interview preparation in one place.">
-    <title>Interview Preparation Tracker</title>
+    <meta name="description" content="Manage job applications, interviews and preparation in one professional workspace.">
+    <meta name="theme-color" content="#101828">
+    <title>Interview Tracker | Career Workspace</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
 </head>
 <body>
-    <header class="topbar">
-        <div class="brand">
-            <div class="brand-icon">IP</div>
-            <div>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <a href="#overview" class="brand">
+            <div class="brand-icon"><img src="assets/logo.svg" alt="Interview Tracker logo"></div>
+            <div class="brand-copy">
                 <h1>Interview Tracker</h1>
-                <p>Your career preparation workspace</p>
+                <p>CAREER WORKSPACE</p>
+            </div>
+        </a>
+
+        <div class="sidebar-label">WORKSPACE</div>
+
+        <nav class="sidebar-nav" aria-label="Main navigation">
+            <a href="#overview" class="nav-link active">
+                <span class="nav-icon">⌂</span>
+                <span>Overview</span>
+            </a>
+            <a href="#applications" class="nav-link">
+                <span class="nav-icon">▤</span>
+                <span>Applications</span>
+            </a>
+            <a href="#interviews" class="nav-link">
+                <span class="nav-icon">▦</span>
+                <span>Interviews</span>
+            </a>
+            <a href="#knowledge-base" class="nav-link">
+                <span class="nav-icon">▧</span>
+                <span>Knowledge Base</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-tip">
+                <div class="tip-icon">✦</div>
+                <h3>Stay prepared</h3>
+                <p>Every application is a new opportunity. Keep learning and moving forward.</p>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="user-avatar">M</div>
+                <div>
+                    <strong>Mahesh Kumar</strong>
+                    <span>Personal workspace</span>
+                </div>
             </div>
         </div>
-        <span class="connection"><span class="connection-dot"></span> MySQL connected</span>
-    </header>
+    </aside>
 
-    <main class="container">
-        <section class="welcome">
-            <div>
-                <p class="eyebrow">PERSONAL DASHBOARD</p>
-                <h2>Welcome back, Mahesh!</h2>
-                <p>Keep your applications organized and your preparation on track.</p>
+    <!-- MAIN CONTENT -->
+    <main class="main-area">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <span class="topbar-context">Workspace</span>
+                <span class="topbar-divider">/</span>
+                <strong id="topbarPageTitle" aria-current="page">Overview</strong>
             </div>
-            <div class="welcome-icon">🎯</div>
-        </section>
 
-        <section class="stats-grid" aria-label="Application statistics">
-            <article class="stat-card">
-                <span class="stat-label">Total applications</span>
-                <strong id="totalCount">0</strong>
-                <span class="stat-foot">All companies</span>
-            </article>
-            <article class="stat-card">
-                <span class="stat-label">Applied</span>
-                <strong id="appliedCount">0</strong>
-                <span class="stat-foot">Applications submitted</span>
-            </article>
-            <article class="stat-card">
-                <span class="stat-label">Interviews</span>
-                <strong id="interviewCount">0</strong>
-                <span class="stat-foot">Interview stage</span>
-            </article>
-            <article class="stat-card">
-                <span class="stat-label">Offers</span>
-                <strong id="offerCount">0</strong>
-                <span class="stat-foot">Offers received</span>
-            </article>
-        </section>
+            <div class="topbar-right">
+                <span class="connection">
+                    <span class="connection-dot"></span>
+                    MySQL connected
+                </span>
+                <div class="topbar-avatar">M</div>
+            </div>
+        </header>
 
-        <section class="content-grid">
-            <section class="panel form-panel">
-                <div class="panel-heading">
-                    <div>
-                        <p class="eyebrow">APPLICATION DETAILS</p>
-                        <h2 id="formHeading">Add a company</h2>
+        <div class="container">
+
+            <!-- DASHBOARD -->
+            <section class="welcome" id="overview">
+                <div class="welcome-content">
+                    <p class="eyebrow">PERSONAL DASHBOARD</p>
+                    <h2>Welcome back, Mahesh <span>✦</span></h2>
+                    <p>Manage your opportunities, prepare for interviews, and stay ahead in your career journey.</p>
+                </div>
+                <div class="welcome-art" aria-hidden="true">
+                    <div class="welcome-art-circle">✦</div>
+                    <div class="welcome-art-small">↗</div>
+                </div>
+            </section>
+
+            <!-- APPLICATION STATISTICS -->
+            <section class="stats-grid" aria-label="Application statistics">
+                <article class="stat-card stat-blue">
+                    <div class="stat-top">
+                        <span class="stat-label">Total applications</span>
+                        <span class="stat-icon">▤</span>
                     </div>
-                    <span class="heading-icon">＋</span>
+                    <strong id="totalCount">0</strong>
+                    <span class="stat-foot">All companies tracked</span>
+                </article>
+
+                <article class="stat-card stat-purple">
+                    <div class="stat-top">
+                        <span class="stat-label">Applied</span>
+                        <span class="stat-icon">↗</span>
+                    </div>
+                    <strong id="appliedCount">0</strong>
+                    <span class="stat-foot">Applications submitted</span>
+                </article>
+
+                <article class="stat-card stat-orange">
+                    <div class="stat-top">
+                        <span class="stat-label">Interviews</span>
+                        <span class="stat-icon">▦</span>
+                    </div>
+                    <strong id="interviewCount">0</strong>
+                    <span class="stat-foot">Interview stage</span>
+                </article>
+
+                <article class="stat-card stat-green">
+                    <div class="stat-top">
+                        <span class="stat-label">Offers</span>
+                        <span class="stat-icon">✧</span>
+                    </div>
+                    <strong id="offerCount">0</strong>
+                    <span class="stat-foot">Offers received</span>
+                </article>
+            </section>
+
+            <!-- APPLICATIONS -->
+            <section class="panel applications-panel" id="applications">
+                <div class="section-header">
+                    <div>
+                        <p class="eyebrow">APPLICATION MANAGEMENT</p>
+                        <h2>Job applications</h2>
+                        <p class="section-subtitle">Keep every opportunity organized in one place.</p>
+                    </div>
+                    <span class="section-icon">▤</span>
                 </div>
 
-                <form id="companyForm">
-                    <div class="form-row">
-                        <div class="field">
-                            <label for="companyName">Company name *</label>
-                            <input id="companyName" name="companyName" type="text"
-                                   maxlength="150" placeholder="e.g. Google" required>
+                <div class="content-grid">
+                    <section class="form-panel">
+                        <div class="subsection-heading">
+                            <div>
+                                <h3 id="formHeading">Add a company</h3>
+                                <p>Enter the details of a new opportunity.</p>
+                            </div>
                         </div>
-                        <div class="field">
-                            <label for="jobRole">Job role *</label>
-                            <input id="jobRole" name="jobRole" type="text"
-                                   maxlength="150" placeholder="e.g. Java Developer" required>
-                        </div>
-                    </div>
 
-                    <div class="form-row">
-                        <div class="field">
-                            <label for="jobLocation">Location</label>
-                            <input id="jobLocation" name="jobLocation" type="text"
-                                   maxlength="150" placeholder="e.g. Hyderabad">
-                        </div>
-                        <div class="field">
-                            <label for="jobType">Job type</label>
-                            <select id="jobType" name="jobType">
-                                <option value="">Select job type</option>
-                                <option>Full-time</option>
-                                <option>Part-time</option>
-                                <option>Internship</option>
-                                <option>Contract</option>
-                                <option>Remote</option>
-                            </select>
-                        </div>
-                    </div>
+                        <form id="companyForm">
+                            <div class="form-row">
+                                <div class="field">
+                                    <label for="companyName">Company name *</label>
+                                    <input id="companyName" name="companyName" type="text"
+                                           maxlength="150" placeholder="e.g. Google" required>
+                                </div>
+                                <div class="field">
+                                    <label for="jobRole">Job role *</label>
+                                    <input id="jobRole" name="jobRole" type="text"
+                                           maxlength="150" placeholder="e.g. Java Developer" required>
+                                </div>
+                            </div>
 
-                    <div class="form-row">
-                        <div class="field">
-                            <label for="applicationStatus">Application status</label>
-                            <select id="applicationStatus" name="applicationStatus">
+                            <div class="form-row">
+                                <div class="field">
+                                    <label for="jobLocation">Location</label>
+                                    <input id="jobLocation" name="jobLocation" type="text"
+                                           maxlength="150" placeholder="e.g. Hyderabad">
+                                </div>
+                                <div class="field">
+                                    <label for="jobType">Job type</label>
+                                    <select id="jobType" name="jobType">
+                                        <option value="">Select job type</option>
+                                        <option>Full-time</option>
+                                        <option>Part-time</option>
+                                        <option>Internship</option>
+                                        <option>Contract</option>
+                                        <option>Remote</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="field">
+                                    <label for="applicationStatus">Application status</label>
+                                    <select id="applicationStatus" name="applicationStatus">
+                                        <option value="APPLIED">Applied</option>
+                                        <option value="ASSESSMENT">Assessment</option>
+                                        <option value="INTERVIEW">Interview</option>
+                                        <option value="OFFER">Offer</option>
+                                        <option value="REJECTED">Rejected</option>
+                                        <option value="WITHDRAWN">Withdrawn</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="applicationDate">Application date</label>
+                                    <input id="applicationDate" name="applicationDate" type="date">
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="websiteUrl">Career page URL</label>
+                                <input id="websiteUrl" name="websiteUrl" type="url"
+                                       maxlength="500" placeholder="https://careers.company.com">
+                            </div>
+
+                            <div class="field">
+                                <label for="jobDescription">Notes / job description</label>
+                                <textarea id="jobDescription" name="jobDescription" rows="3"
+                                          placeholder="Add useful details about this opportunity..."></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary" id="submitButton">Save company</button>
+                                <button type="button" class="btn-secondary hidden"
+                                        id="cancelEditButton">Cancel</button>
+                            </div>
+                        </form>
+                        <p id="formMessage" class="message" role="status"></p>
+                    </section>
+
+                    <section class="companies-panel">
+                        <div class="subsection-heading list-heading">
+                            <div>
+                                <h3>My companies</h3>
+                                <p>Your current job search pipeline.</p>
+                            </div>
+                            <span id="companyCountLabel" class="count-label">0 records</span>
+                        </div>
+
+                        <div class="toolbar">
+                            <input id="searchInput" type="search"
+                                   placeholder="Search company or role..."
+                                   aria-label="Search companies">
+                            <select id="statusFilter" aria-label="Filter by status">
+                                <option value="">All statuses</option>
                                 <option value="APPLIED">Applied</option>
                                 <option value="ASSESSMENT">Assessment</option>
                                 <option value="INTERVIEW">Interview</option>
@@ -107,300 +250,269 @@
                                 <option value="WITHDRAWN">Withdrawn</option>
                             </select>
                         </div>
-                        <div class="field">
-                            <label for="applicationDate">Application date</label>
-                            <input id="applicationDate" name="applicationDate" type="date">
+
+                        <div id="loadingMessage" class="empty-state loading-state" role="status" aria-live="polite">
+                            <span class="loading-spinner" aria-hidden="true"></span>
+                            <span>Loading your companies...</span>
                         </div>
-                    </div>
-
-                    <div class="field">
-                        <label for="websiteUrl">Career page URL</label>
-                        <input id="websiteUrl" name="websiteUrl" type="url"
-                               maxlength="500" placeholder="https://careers.company.com">
-                    </div>
-
-                    <div class="field">
-                        <label for="jobDescription">Notes / job description</label>
-                        <textarea id="jobDescription" name="jobDescription" rows="3"
-                                  placeholder="Add useful details about this opportunity..."></textarea>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn-primary" id="submitButton">Save company</button>
-                        <button type="button" class="btn-secondary hidden"
-                                id="cancelEditButton">Cancel</button>
-                    </div>
-                </form>
-                <p id="formMessage" class="message" role="status"></p>
+                        <div id="companyList" class="company-list"></div>
+                        <div id="emptyMessage" class="empty-state hidden">
+                            <div class="empty-icon">▤</div>
+                            <h3>No companies found</h3>
+                            <p>Add your first application using the form.</p>
+                        </div>
+                        <p id="listMessage" class="message" role="status"></p>
+                    </section>
+                </div>
             </section>
 
-            <section class="panel companies-panel">
-                <div class="panel-heading list-heading">
+            <!-- INTERVIEWS -->
+            <section class="panel rounds-panel" id="interviews">
+                <div class="section-header">
                     <div>
-                        <p class="eyebrow">YOUR JOB SEARCH</p>
-                        <h2>My companies</h2>
+                        <p class="eyebrow">INTERVIEW MANAGEMENT</p>
+                        <h2>Interview preparation</h2>
+                        <p class="section-subtitle">Schedule interviews and track every round.</p>
                     </div>
-                    <span id="companyCountLabel" class="count-label">0 records</span>
+                    <span class="section-icon">▦</span>
                 </div>
 
-                <div class="toolbar">
-                    <input id="searchInput" type="search"
-                           placeholder="Search company or role..."
-                           aria-label="Search companies">
-                    <select id="statusFilter" aria-label="Filter by status">
-                        <option value="">All statuses</option>
-                        <option value="APPLIED">Applied</option>
-                        <option value="ASSESSMENT">Assessment</option>
-                        <option value="INTERVIEW">Interview</option>
-                        <option value="OFFER">Offer</option>
-                        <option value="REJECTED">Rejected</option>
-                        <option value="WITHDRAWN">Withdrawn</option>
-                    </select>
-                </div>
+                <div class="rounds-grid">
+                    <section class="round-form-section">
+                        <div class="subsection-heading">
+                            <div>
+                                <h3 id="roundFormHeading">Add an interview round</h3>
+                                <p>Record your upcoming interview details.</p>
+                            </div>
+                        </div>
 
-                <div id="loadingMessage" class="empty-state">Loading your companies...</div>
-                <div id="companyList" class="company-list"></div>
-                <div id="emptyMessage" class="empty-state hidden">
-                    <div class="empty-icon">📂</div>
-                    <h3>No companies found</h3>
-                    <p>Add your first application using the form.</p>
+                        <form id="roundForm">
+                            <div class="field">
+                                <label for="roundCompanyId">Company *</label>
+                                <select id="roundCompanyId" required>
+                                    <option value="">Select a company</option>
+                                </select>
+                            </div>
+
+                            <div class="field">
+                                <label for="roundName">Round name *</label>
+                                <input id="roundName" type="text" maxlength="100"
+                                       placeholder="e.g. Technical Round 1" required>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="field">
+                                    <label for="roundType">Round type</label>
+                                    <select id="roundType">
+                                        <option value="TECHNICAL">Technical</option>
+                                        <option value="HR">HR</option>
+                                        <option value="CODING">Coding</option>
+                                        <option value="MANAGERIAL">Managerial</option>
+                                        <option value="BEHAVIORAL">Behavioral</option>
+                                        <option value="APTITUDE">Aptitude</option>
+                                        <option value="OTHER">Other</option>
+                                    </select>
+                                </div>
+                                <div class="field">
+                                    <label for="roundStatus">Status</label>
+                                    <select id="roundStatus">
+                                        <option value="PENDING">Pending</option>
+                                        <option value="SCHEDULED">Scheduled</option>
+                                        <option value="COMPLETED">Completed</option>
+                                        <option value="CANCELLED">Cancelled</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="field">
+                                <label for="roundDate">Interview date and time</label>
+                                <input id="roundDate" type="datetime-local">
+                            </div>
+
+                            <div class="field">
+                                <label for="roundFeedback">Feedback / preparation notes</label>
+                                <textarea id="roundFeedback" rows="4"
+                                          placeholder="Add feedback, topics to prepare, or notes..."></textarea>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary" id="roundSubmitButton">
+                                    Save interview round
+                                </button>
+                                <button type="button" class="btn-secondary hidden"
+                                        id="cancelRoundEditButton">Cancel</button>
+                            </div>
+                        </form>
+                        <p id="roundFormMessage" class="message" role="status"></p>
+                    </section>
+
+                    <section class="round-list-section">
+                        <div class="round-list-heading">
+                            <div>
+                                <h3>Your interview rounds</h3>
+                                <p id="roundCountLabel" class="section-subtitle">0 rounds</p>
+                            </div>
+                            <select id="roundCompanyFilter" aria-label="Filter rounds by company">
+                                <option value="">All companies</option>
+                            </select>
+                        </div>
+
+                        <div id="roundLoadingMessage" class="empty-state loading-state hidden" role="status" aria-live="polite">
+                            <span class="loading-spinner" aria-hidden="true"></span>
+                            <span>Loading interview rounds...</span>
+                        </div>
+                        <div id="roundList" class="round-list"></div>
+                        <div id="roundEmptyMessage" class="empty-state hidden">
+                            <div class="empty-icon">▦</div>
+                            <h3>No interview rounds yet</h3>
+                            <p>Add a round using the form to start tracking interviews.</p>
+                        </div>
+                        <p id="roundListMessage" class="message" role="status"></p>
+                    </section>
                 </div>
-                <p id="listMessage" class="message" role="status"></p>
             </section>
-        </section>
 
-        <!-- Interview Rounds Management -->
-        <section class="panel rounds-panel">
-            <div class="panel-heading">
-                <div>
-                    <p class="eyebrow">INTERVIEW MANAGEMENT</p>
-                    <h2 id="roundFormHeading">Add an interview round</h2>
-                    <p class="section-subtitle">Schedule interviews and track your progress.</p>
+            <!-- KNOWLEDGE BASE -->
+            <section class="panel questions-panel" id="knowledge-base">
+                <div class="section-header">
+                    <div>
+                        <p class="eyebrow">KNOWLEDGE BASE</p>
+                        <h2>Preparation questions</h2>
+                        <p class="section-subtitle">Build your question bank and measure your learning progress.</p>
+                    </div>
+                    <span class="section-icon">▧</span>
                 </div>
-                <span class="heading-icon">📅</span>
-            </div>
 
-            <div class="rounds-grid">
-                <section class="round-form-section">
-                    <form id="roundForm">
-                        <div class="field">
-                            <label for="roundCompanyId">Company *</label>
-                            <select id="roundCompanyId" required>
-                                <option value="">Select a company</option>
-                            </select>
-                        </div>
+                <div class="question-stats">
+                    <div class="question-stat">
+                        <span>Total questions</span>
+                        <strong id="questionTotalCount">0</strong>
+                    </div>
+                    <div class="question-stat">
+                        <span>Completed</span>
+                        <strong id="questionCompletedCount">0</strong>
+                    </div>
+                    <div class="question-stat">
+                        <span>Pending</span>
+                        <strong id="questionPendingCount">0</strong>
+                    </div>
+                    <div class="question-stat">
+                        <span>Completion</span>
+                        <strong id="questionProgressPercent">0%</strong>
+                    </div>
+                </div>
 
-                        <div class="field">
-                            <label for="roundName">Round name *</label>
-                            <input id="roundName" type="text" maxlength="100"
-                                   placeholder="e.g. Technical Round 1" required>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="field">
-                                <label for="roundType">Round type</label>
-                                <select id="roundType">
-                                    <option value="TECHNICAL">Technical</option>
-                                    <option value="HR">HR</option>
-                                    <option value="CODING">Coding</option>
-                                    <option value="MANAGERIAL">Managerial</option>
-                                    <option value="BEHAVIORAL">Behavioral</option>
-                                    <option value="APTITUDE">Aptitude</option>
-                                    <option value="OTHER">Other</option>
-                                </select>
-                            </div>
-                            <div class="field">
-                                <label for="roundStatus">Status</label>
-                                <select id="roundStatus">
-                                    <option value="PENDING">Pending</option>
-                                    <option value="SCHEDULED">Scheduled</option>
-                                    <option value="COMPLETED">Completed</option>
-                                    <option value="CANCELLED">Cancelled</option>
-                                </select>
+                <div class="questions-grid">
+                    <section class="question-form-section">
+                        <div class="subsection-heading">
+                            <div>
+                                <h3 id="questionFormHeading">Add a question</h3>
+                                <p>Save questions and your own answer notes.</p>
                             </div>
                         </div>
 
-                        <div class="field">
-                            <label for="roundDate">Interview date and time</label>
-                            <input id="roundDate" type="datetime-local">
+                        <form id="questionForm">
+                            <div class="field">
+                                <label for="questionCategory">Category *</label>
+                                <input id="questionCategory" type="text" maxlength="100"
+                                       list="questionCategoryOptions"
+                                       placeholder="e.g. Java, SQL, Python, HR" required>
+                                <datalist id="questionCategoryOptions">
+                                    <option value="Java"></option>
+                                    <option value="SQL"></option>
+                                    <option value="Python"></option>
+                                    <option value="JavaScript"></option>
+                                    <option value="React"></option>
+                                    <option value="HR"></option>
+                                    <option value="Aptitude"></option>
+                                </datalist>
+                            </div>
+
+                            <div class="field">
+                                <label for="questionText">Question *</label>
+                                <textarea id="questionText" rows="3" maxlength="10000"
+                                          placeholder="Enter your preparation question..." required></textarea>
+                            </div>
+
+                            <div class="field">
+                                <label for="questionAnswerNotes">Answer notes</label>
+                                <textarea id="questionAnswerNotes" rows="5"
+                                          placeholder="Write your answer, explanation, or key points..."></textarea>
+                            </div>
+
+                            <div class="field">
+                                <label for="questionDifficulty">Difficulty</label>
+                                <select id="questionDifficulty">
+                                    <option value="EASY">Easy</option>
+                                    <option value="MEDIUM" selected>Medium</option>
+                                    <option value="HARD">Hard</option>
+                                </select>
+                            </div>
+
+                            <div class="field question-completed-field">
+                                <label>
+                                    <input id="questionIsCompleted" type="checkbox">
+                                    Mark as completed
+                                </label>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary" id="questionSubmitButton">
+                                    Save question
+                                </button>
+                                <button type="button" class="btn-secondary hidden"
+                                        id="cancelQuestionEditButton">Cancel</button>
+                            </div>
+                        </form>
+                        <p id="questionFormMessage" class="message" role="status"></p>
+                    </section>
+
+                    <section class="question-list-section">
+                        <div class="question-list-heading">
+                            <div>
+                                <h3>Your question library</h3>
+                                <p id="questionCountLabel" class="section-subtitle">0 questions</p>
+                            </div>
                         </div>
 
-                        <div class="field">
-                            <label for="roundFeedback">Feedback / preparation notes</label>
-                            <textarea id="roundFeedback" rows="4"
-                                      placeholder="Add feedback, topics to prepare, or notes..."></textarea>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn-primary" id="roundSubmitButton">
-                                Save interview round
-                            </button>
-                            <button type="button" class="btn-secondary hidden"
-                                    id="cancelRoundEditButton">Cancel</button>
-                        </div>
-                    </form>
-                    <p id="roundFormMessage" class="message" role="status"></p>
-                </section>
-
-                <section class="round-list-section">
-                    <div class="round-list-heading">
-                        <div>
-                            <h3>Your interview rounds</h3>
-                            <p id="roundCountLabel" class="section-subtitle">0 rounds</p>
-                        </div>
-                        <select id="roundCompanyFilter" aria-label="Filter rounds by company">
-                            <option value="">All companies</option>
-                        </select>
-                    </div>
-
-                    <div id="roundLoadingMessage" class="empty-state hidden">
-                        Loading interview rounds...
-                    </div>
-                    <div id="roundList" class="round-list"></div>
-                    <div id="roundEmptyMessage" class="empty-state hidden">
-                        <div class="empty-icon">🗓️</div>
-                        <h3>No interview rounds yet</h3>
-                        <p>Add a round using the form to start tracking interviews.</p>
-                    </div>
-                    <p id="roundListMessage" class="message" role="status"></p>
-                </section>
-            </div>
-        </section>
-
-        <!-- PREPARATION QUESTIONS -->
-        <section class="panel questions-panel">
-            <div class="panel-heading">
-                <div>
-                    <p class="eyebrow">KNOWLEDGE BASE</p>
-                    <h2>Preparation Questions</h2>
-                    <p class="section-subtitle">Build your question bank and track your learning progress.</p>
-                </div>
-                <span class="heading-icon">📚</span>
-            </div>
-
-            <div class="question-stats">
-                <div class="question-stat">
-                    <span>Total questions</span>
-                    <strong id="questionTotalCount">0</strong>
-                </div>
-                <div class="question-stat">
-                    <span>Completed</span>
-                    <strong id="questionCompletedCount">0</strong>
-                </div>
-                <div class="question-stat">
-                    <span>Pending</span>
-                    <strong id="questionPendingCount">0</strong>
-                </div>
-                <div class="question-stat">
-                    <span>Completion</span>
-                    <strong id="questionProgressPercent">0%</strong>
-                </div>
-            </div>
-
-            <div class="questions-grid">
-                <section class="question-form-section">
-                    <h3 id="questionFormHeading">Add a question</h3>
-                    <p class="section-subtitle">Save questions and your own answer notes.</p>
-
-                    <form id="questionForm">
-                        <div class="field">
-                            <label for="questionCategory">Category *</label>
-                            <input id="questionCategory" type="text" maxlength="100"
-                                   list="questionCategoryOptions"
-                                   placeholder="e.g. Java, SQL, Python, HR" required>
-                            <datalist id="questionCategoryOptions">
-                                <option value="Java"></option>
-                                <option value="SQL"></option>
-                                <option value="Python"></option>
-                                <option value="JavaScript"></option>
-                                <option value="React"></option>
-                                <option value="HR"></option>
-                                <option value="Aptitude"></option>
-                            </datalist>
-                        </div>
-
-                        <div class="field">
-                            <label for="questionText">Question *</label>
-                            <textarea id="questionText" rows="3" maxlength="10000"
-                                      placeholder="Enter your preparation question..." required></textarea>
-                        </div>
-
-                        <div class="field">
-                            <label for="questionAnswerNotes">Answer notes</label>
-                            <textarea id="questionAnswerNotes" rows="5"
-                                      placeholder="Write your answer, explanation, or key points..."></textarea>
-                        </div>
-
-                        <div class="field">
-                            <label for="questionDifficulty">Difficulty</label>
-                            <select id="questionDifficulty">
-                                <option value="EASY">Easy</option>
-                                <option value="MEDIUM" selected>Medium</option>
-                                <option value="HARD">Hard</option>
+                        <div class="question-filters">
+                            <input id="questionSearch" type="search"
+                                   placeholder="Search questions or answers..."
+                                   aria-label="Search questions">
+                            <select id="questionCategoryFilter" aria-label="Filter by category">
+                                <option value="">All categories</option>
+                            </select>
+                            <select id="questionCompletionFilter" aria-label="Filter by completion">
+                                <option value="">All questions</option>
+                                <option value="pending">Pending</option>
+                                <option value="completed">Completed</option>
                             </select>
                         </div>
 
-                        <div class="field question-completed-field">
-                            <label>
-                                <input id="questionIsCompleted" type="checkbox">
-                                Mark as completed
-                            </label>
+                        <div id="questionLoadingMessage" class="empty-state loading-state hidden" role="status" aria-live="polite">
+                            <span class="loading-spinner" aria-hidden="true"></span>
+                            <span>Loading questions...</span>
                         </div>
-
-                        <div class="form-actions">
-                            <button type="submit" class="btn-primary" id="questionSubmitButton">
-                                Save question
-                            </button>
-                            <button type="button" class="btn-secondary hidden"
-                                    id="cancelQuestionEditButton">Cancel</button>
+                        <div id="questionList" class="question-list"></div>
+                        <div id="questionEmptyMessage" class="empty-state hidden">
+                            <div class="empty-icon">▧</div>
+                            <h3>No questions found</h3>
+                            <p>Add a question or change your search filters.</p>
                         </div>
-                    </form>
-                    <p id="questionFormMessage" class="message" role="status"></p>
-                </section>
+                        <p id="questionListMessage" class="message" role="status"></p>
+                    </section>
+                </div>
+            </section>
 
-                <section class="question-list-section">
-                    <div class="question-list-heading">
-                        <div>
-                            <h3>Your question library</h3>
-                            <p id="questionCountLabel" class="section-subtitle">0 questions</p>
-                        </div>
-                    </div>
+            <footer class="app-footer">
+                <p>Interview Preparation Tracker <span>•</span> Built with Java, JDBC & MySQL</p>
+                <span>Made for your next opportunity.</span>
+            </footer>
 
-                    <div class="question-filters">
-                        <input id="questionSearch" type="search"
-                               placeholder="Search questions or answers..."
-                               aria-label="Search questions">
-                        <select id="questionCategoryFilter" aria-label="Filter by category">
-                            <option value="">All categories</option>
-                        </select>
-                        <select id="questionCompletionFilter" aria-label="Filter by completion">
-                            <option value="">All questions</option>
-                            <option value="pending">Pending</option>
-                            <option value="completed">Completed</option>
-                        </select>
-                    </div>
-
-                    <div id="questionLoadingMessage" class="empty-state hidden">
-                        Loading questions...
-                    </div>
-                    <div id="questionList" class="question-list"></div>
-                    <div id="questionEmptyMessage" class="empty-state hidden">
-                        <div class="empty-icon">📝</div>
-                        <h3>No questions found</h3>
-                        <p>Add a question or change your search filters.</p>
-                    </div>
-                    <p id="questionListMessage" class="message" role="status"></p>
-                </section>
-            </div>
-        </section>
-
-
-
-        <footer>
-            <p>Interview Preparation Tracker <span>•</span> Built with Java, JDBC & MySQL</p>
-        </footer>
+        </div>
     </main>
+</div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
