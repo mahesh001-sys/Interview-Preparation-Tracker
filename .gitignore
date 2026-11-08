@@ -1,0 +1,19 @@
+
+# Local environment secrets
+.env
+.env.*
+
+# Allow the example template
+!.env.example
+
+# Java / Maven
+backend/target/
+*.class
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
