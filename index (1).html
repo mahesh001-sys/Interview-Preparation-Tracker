@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Preparation Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Interview Preparation Tracker</h1>
+        <p>Track your companies, questions, and interview preparation.</p>
+    </header>
+
+    <main>
+        <section class="card">
+            <h2>Welcome, Mahesh!</h2>
+            <p>Manage your interview preparation in one place.</p>
+        </section>
+
+        <section class="card">
+            <h2>Add a Company</h2>
+
+            <form id="companyForm">
+                <label for="companyName">Company Name</label>
+                <input
+                    type="text"
+                    id="companyName"
+                    placeholder="Enter company name"
+                    required
+                >
+
+                <label for="jobRole">Job Role</label>
+                <input
+                    type="text"
+                    id="jobRole"
+                    placeholder="Enter job role"
+                    required
+                >
+
+                <button type="submit">Add Company</button>
+            </form>
+
+            <h3>My Companies</h3>
+            <ul id="companyList"></ul>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
